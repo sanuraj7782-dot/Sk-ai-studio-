@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>onHTML Project</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      background: #100b20;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    
+    .app {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 25px 5px;
+    }
+    
+    h1 {
+      color: #c084fc;
+    }
+    
+    main {
+      background: #211735;
+      padding: 22px;
+      border-radius: 18px;
+    }
+    
+    h2 {
+      color: #d8b4fe;
+    }
+    
+    label {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+    
+    textarea,
+    select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #7045a5;
+      background: #100b20;
+      color: white;
+      font-size: 16px;
+    }
+    
+    textarea {
+      height: 120px;
+    }
+    
+    button {
+      width: 100%;
+      padding: 16px;
+      margin-top: 25px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #9333ea, #ec4899);
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+    }
+    
+    #result {
+      margin-top: 25px;
+      padding: 20px;
+      background: #100b20;
+      border-radius: 12px;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #aaa;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>🎬 SK AI Studio</h1>
+      <p>Your AI Video Creation Studio</p>
+    </header>
+  
+    <main>
+      <h2>Create Your Video ✨</h2>
+  
+      <label>Describe Your Video</label>
+      <textarea id="prompt" placeholder="Write your video idea here..."></textarea>
+  
+      <label>Video Style</label>
+      <select id="style">
+        <option>3D Cartoon</option>
+        <option>Realistic</option>
+        <option>Anime</option>
+        <option>Kids Animation</option>
+      </select>
+  
+      <label>Video Duration</label>
+      <select id="duration">
+        <option>5 Seconds</option>
+        <option>10 Seconds</option>
+        <option>15 Seconds</option>
+      </select>
+  
+      <button onclick="generateVideo()">✨ Generate Video</button>
+  
+      <div id="result">
+        <p>Your video preview will appear here.</p>
+      </div>
+    </main>
+  
+    <footer>© 2026 SK AI Studio</footer>
+  </div>
+  <script>
+    async function generateVideo() {
+        const prompt = document.getElementById("prompt").value;
+        const style = document.getElementById("style").value;
+        const duration = document.getElementById("duration").value;
+        const result = document.getElementById("result");
+    
+        if (!prompt.trim()) {
+          alert("Please enter your video idea!");
+          return;
+        }
+    
+        result.innerHTML = "<h3>⏳ Connecting to AI Video Generator...</h3>";
+    
+        try {
+          const response = await fetch("/api/generate-video", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              prompt: prompt,
+              style: style,
+              duration: duration
+            })
+          });
+    
+          const data = await response.json();
+    
+          if (!response.ok) {
+            throw new Error(data.error || "Video generation failed");
+          }
+    
+          if (data.videoUrl) {
+            result.innerHTML = `
+            <h3>🎬 Your AI Video</h3>
+            <video controls width="100%" src="${escapeHTML(data.videoUrl)}"></video>
+            <p>✅ Video generated successfully!</p>
+          `;
+          } else {
+            result.innerHTML = "<h
+    
+  </script>
+</body>
+</html>
