@@ -1,0 +1,55 @@
+New repository
+
+22
+
+Create a new repository
+
+Repositories contain a project's files and version history. Have a project elsewhere? Import a repository.
+
+Required fields are marked with an asterisk (*).
+
+General
+
+Owner *
+
+sanuraj7782-dot
+
+Repository name
+
+package.json
+
+package.json is available.
+
+Great repository names are short and memorable. How about verbose-octo-adventure?
+
+Description
+
+0/350 characters
+
+2 Configuration
+
+Choose visibility*
+
+Choose who can see and commit to this repository
+
+Add README
+
+READMEs can be used as longer descriptions. About READMES
+
+Add.gitignore
+
+gitignore tells git which files not to track. About ignoring files
+
+No .gitignore
+
+Add license
+
+Licenses explain how others can use your code. About licenses
+
+Public
+
+Off
+
+No license
+
+Create repository
